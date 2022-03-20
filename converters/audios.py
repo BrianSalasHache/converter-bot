@@ -1,22 +1,20 @@
-from pydub import AudioSegment
-from os import system
+from pydub import AudioSegment as AudS
+from os import system as s
 
-from helpers.seeker_file import seeker
+from helpers.seeker_file import seeker, folder
 
-def converter_audio(ext1, ext2):
-    for i in seeker(ext1, ext2):
-        if i[1] == 'wav':
-            audio = AudioSegment.from_wav(f"./conversor/{i[0]}.{i[1]}")
-        elif i[1] == 'mp3':
-            audio = AudioSegment.from_mp3(f"./conversor/{i[0]}.{i[1]}")
-        audio.export(f"./conversor/{i[0]}.{i[2]}", format=f"{i[2]}")
+def converter_audio(extension_1: str, extension_2: str) -> None:
+    for i in seeker(extension_1, extension_2):
+        name, ext, ext2 = i
+        convert = AudS.from_wav if ext == 'wav' else AudS.from_mp3 if ext == 'mp3' else None
+        audio = convert(f'{folder}{name}.{ext}')
+        audio.export(f'{folder}{name}.{ext2}', format=f'{ext2}')
 
-def audios_options():
+def audios_options() -> None:
     option = ' '
     while option not in ('1', '2', '0'):
         option = input('CONVERTIR:\n\n1. De mp3 a wav\n2. De wav a mp3\n\n0. Volver\n\n')
-        system('cls')
-
+        s('cls')
         if option == '1':
             converter_audio('mp3', 'wav')
         elif option == '2':
