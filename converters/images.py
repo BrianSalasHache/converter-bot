@@ -21,7 +21,8 @@ def converter_image(extension: str) -> None:
             print('')
     print('================================\n')
 
-def images_string(extension: str, language_code: str) -> None:
+def images_string(language_code: str) -> None:
+    extension = 'txt'
     for i in seeker(('png', 'jpg', 'jpeg')):
         name, ext = i
         try:
@@ -54,14 +55,14 @@ def images_string_options() -> None:
         option = input('SELECCIONE EL LENGUAJE DE LA IMAGEN POR FAVOR:\n\n1. English\n2. Español\t(Spanish)\n3. Français\t(French)\n4. Italiano\t(Italian)\n5. Pусский\t(Russian)\n6. Portugues\t(Portuguese)\n\n0. Volver\n\n')
         s('cls')
         if option == '1':
-            images_string('txt', 'eng')
+            images_string('eng')
         elif option == '2':
-            images_string('txt', 'spa')
+            images_string('spa')
         elif option == '3':
-            images_string('txt', 'fra')
+            images_string('fra')
         elif option == '4':
-            images_string('txt', 'ita')
+            images_string('ita')
         elif option == '5':
-            images_string('txt', 'rus')
+            images_string('rus')
         elif option == '6':
-            images_string('txt', 'por')
+            images_string('por')

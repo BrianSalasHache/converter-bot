@@ -4,11 +4,11 @@ from converters.audios import audios_options, audio_text_options
 from converters.documents import documents_options
 from converters.images import images_options, images_string_options
 from converters.videos import videos_options, videos_audios_options
-
+from converters.translator import translator_options
 s('cls')
 option = ''
 while option != '0':
-    option = input('QUE QUERES CONVERTIR?\n\n1. Audio\n2. Audio a Texto\n3. Documento\n4. Imagen\n5. Imagen a Texto\n6. Video\n7. Video a Audio\n\n0. Salir del programa\n\n')
+    option = input('QUE QUERES HACER?\n\n1. Convertir Audio\n2. Convertir Audio a Texto\n3. Convertir Documento\n4. Convertir Imagen\n5. Convertir Imagen a Texto\n6. Convertir Video\n7. Convertir Video a Audio\n8. Traducir un Texto\n9. Traducir una Imagen\n\n0. Salir del programa\n\n')
     s('cls')
     if option == '1':
         audios_options()
@@ -24,3 +24,8 @@ while option != '0':
         videos_options()
     elif option == '7':
         videos_audios_options()
+    elif option == '8':
+        translator_options(0)
+    elif option == '9':
+        images_string_options()
+        translator_options(1)

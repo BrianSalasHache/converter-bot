@@ -3,7 +3,7 @@ from typing import List
 
 folder = './conversor/'
 
-def seeker(ext1: str, *args: str) -> List:
+def seeker(ext1: str) -> List:
     route = list((Path.cwd() / folder).glob('*'))
     files = []
     for i in route:
