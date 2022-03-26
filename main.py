@@ -1,20 +1,26 @@
-from os import system
+from os import system as s
 
-from converters.audios import audios_options
+from converters.audios import audios_options, audio_text_options
 from converters.documents import documents_options
-from converters.images import images_options
-from converters.videos import videos_options
+from converters.images import images_options, images_string_options
+from converters.videos import videos_options, videos_audios_options
 
+s('cls')
 option = ''
 while option != '0':
-    system('cls')
-    option = input('QUE QUERES CONVERTIR?\n\n1. Audio\n2. Documento\n3. Imagen\n4. Videos\n\n0. Salir del programa\n\n')
-    system('cls')
+    option = input('QUE QUERES CONVERTIR?\n\n1. Audio\n2. Audio a Texto\n3. Documento\n4. Imagen\n5. Imagen a Texto\n6. Video\n7. Video a Audio\n\n0. Salir del programa\n\n')
+    s('cls')
     if option == '1':
         audios_options()
     elif option == '2':
-        documents_options()
+        audio_text_options()
     elif option == '3':
-        images_options()
+        documents_options()
     elif option == '4':
+        images_options()
+    elif option == '5':
+        images_string_options()
+    elif option == '6':
         videos_options()
+    elif option == '7':
+        videos_audios_options()
