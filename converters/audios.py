@@ -19,7 +19,7 @@ def convert_audio(extension: str) -> None:
             print('')
     print('================================\n')
 
-def convert_audio_text(extension: str, language_code: str) -> None:
+def convert_audio_string(extension: str, language_code: str) -> None:
     convert_audio('wav')
     for i in seeker('wav'):
         name, ext = i
@@ -48,22 +48,22 @@ def audios_options() -> None:
         elif option == '2':
             convert_audio('wav')
 
-def audio_text_options() -> None:
+def audio_string_options() -> None:
     option = ' '
     while option not in ('1', '2', '3', '4', '5', '6', '7', '0'):
         option = input('SELECCIONE EL LENGUAJE DEL AUDIO POR FAVOR:\n\n1. English\t(United States)\n2. English\t(United Kingdom)\n3. Español\t(Argentina)\n4. Español\t(Spain)\n5. Français\t(France)\n6. Italiano\t(Italy)\n7. Portugues\t(Brazil)\n\n0. Volver\n\n')
         s('cls')
         if option == '1':
-            convert_audio_text('txt', 'en-US')
+            convert_audio_string('txt', 'en-US')
         elif option == '2':
-            convert_audio_text('txt', 'en-GB')
+            convert_audio_string('txt', 'en-GB')
         elif option == '3':
-            convert_audio_text('txt', 'es-AR')
+            convert_audio_string('txt', 'es-AR')
         elif option == '4':
-            convert_audio_text('txt', 'es-ES')
+            convert_audio_string('txt', 'es-ES')
         elif option == '5':
-            convert_audio_text('txt', 'fr-FR')
+            convert_audio_string('txt', 'fr-FR')
         elif option == '6':
-            convert_audio_text('txt', 'it-IT')
+            convert_audio_string('txt', 'it-IT')
         elif option == '7':
-            convert_audio_text('txt', 'pt-BR')
+            convert_audio_string('txt', 'pt-BR')
