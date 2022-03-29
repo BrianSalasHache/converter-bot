@@ -5,8 +5,6 @@ from os import system as s
 
 from helpers.seeker_file import seeker, folder
 
-pytesseract.tesseract_cmd = r'C:\Program Files\Tesseract-OCR\tesseract.exe'
-
 def converter_image(extension: str) -> None:
     for i in seeker(('png', 'jpg', 'jpeg')):
         name, ext = i
@@ -37,22 +35,12 @@ def images_string(language_code: str) -> None:
             print('')
     print('================================\n')
 
-def images_options() -> None:
-    option = ' '
-    while option not in ('1', '2', '3', '0'):
-        option = input('CONVERTIR:\n\n1. a PNG\n2. a JPG\n3. a JPEG\n\n0. Volver\n\n')
-        s('cls')
-        if option == '1':
-            converter_image('png')
-        elif option == '2':
-            converter_image('jpg')
-        elif option == '3':
-            converter_image('jpeg')
+pytesseract.tesseract_cmd = r'C:\Program Files\Tesseract-OCR\tesseract.exe'
 
 def images_string_options() -> None:
     option = ' '
     while option not in ('1', '2', '3', '4', '5', '6', '0'):
-        option = input('SELECCIONE EL LENGUAJE DE LA IMAGEN POR FAVOR:\n\n1. English\n2. Español\t(Spanish)\n3. Français\t(French)\n4. Italiano\t(Italian)\n5. Pусский\t(Russian)\n6. Portugues\t(Portuguese)\n\n0. Volver\n\n')
+        option = input('SELECCIONE EL LENGUAJE DE LA IMAGEN:\n\n1. English\n2. Español\t(Spanish)\n3. Français\t(French)\n4. Italiano\t(Italian)\n5. Pусский\t(Russian)\n6. Portugues\t(Portuguese)\n\n0. Volver\n\n')
         s('cls')
         if option == '1':
             images_string('eng')
@@ -66,3 +54,17 @@ def images_string_options() -> None:
             images_string('rus')
         elif option == '6':
             images_string('por')
+
+def images_options() -> None:
+    option = ' '
+    while option not in ('1', '2', '3', '4', '0'):
+        option = input('CONVERTIR IMAGEN A\n\n 1. PNG  (Imagen)\n 2. JPG  (Imagen)\n 3. JPEG (Imagen)\n 4. TXT  (Texto)\n\n0. Volver\n\n')
+        s('cls')
+        if option == '1':
+            converter_image('png')
+        elif option == '2':
+            converter_image('jpg')
+        elif option == '3':
+            converter_image('jpeg')
+        elif option == '4':
+            images_string_options()
