@@ -3,8 +3,10 @@ from traceback import print_exc
 from os import system as s, remove
 
 from helpers.seeker_file import seeker, folder
+from converters.audios import audio_language
+from converters.images import images_string_options
 
-def translator(language_code, option):
+def translator(language_code: str, option: int) -> None:
     for i in seeker('txt'):
         name, ext = i
         try:
@@ -24,7 +26,7 @@ def translator(language_code, option):
                 remove(f'{folder}{name}.{ext}')
     print('================================\n')
 
-def translator_options(opt) -> None:
+def translator_language(opt: int) -> None:
     option = ' '
     while option not in ('1', '2', '3', '4', '5', '6', '0'):
         option = input('SELECCIONE EL LENGUAJE AL QUE QUIERE TRADUCIR:\n\n1. English\n2. Español\t(Spanish)\n3. Français\t(French)\n4. Italiano\t(Italian)\n5. Pусский\t(Russian)\n6. Portugues\t(Portuguese)\n\n0. Volver\n\n')
@@ -41,3 +43,17 @@ def translator_options(opt) -> None:
             translator('ru', opt)
         elif option == '6':
             translator('pt', opt)
+
+def translator_options() -> None:
+    option = ' '
+    while option not in ('1', '2', '3', '0'):
+        option = input('TRADUCIR\n\n 1. Audio\n 2. Imagen\n 3. Texto\n\n0. Volver\n\n')
+        s('cls')
+        if option == '1':
+            audio_language()
+            translator_language(1)
+        elif option == '2':
+            images_string_options()
+            translator_language(1)
+        elif option == '3':
+            translator_language(0)

@@ -21,20 +21,14 @@ def converter_video(extension: str) -> None:
 
 def videos_options() -> None:
     option = ' '
-    while option not in ('1', '2', '0'):
-        option = input('CONVERTIR:\n\n1. a MP4\n2. a WEBM\n\n0. Volver\n\n')
-        s('cls')
-        if option == '1':
-            converter_video('mp4')
-        elif option == '2':
-            converter_video('webm')
-
-def videos_audios_options() -> None:
-    option = ' '
-    while option not in ('1', '2', '0'):
-        option = input('CONVERTIR:\n\n1. a MP3\n2. a WAV\n\n0. Volver\n\n')
+    while option not in ('1', '2', '3', '4', '0'):
+        option = input('CONVERTIR VIDEO A\n\n 1. MP3  (Audio)\n 2. WAV  (Audio)\n 3. MP4  (Video)\n 4. WEBM (Video)\n\n0. Volver\n\n')
         s('cls')
         if option == '1':
             converter_video('mp3')
         elif option == '2':
             converter_video('wav')
+        elif option == '3':
+            converter_video('mp4')
+        elif option == '4':
+            converter_video('webm')

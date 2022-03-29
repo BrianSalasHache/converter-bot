@@ -22,7 +22,7 @@ def converter_document(extension: str, func: Callable) -> None:
 def documents_options() -> None:
     option = ' '
     while option not in ('1', '2', '0'):
-        option = input('CONVERTIR:\n\n1. De pdf a docx\n2. De docx a pdf\n\n0. Volver\n\n')
+        option = input('CONVERTIR DOCUMENTO\n\n 1. PDF a DOCX\n 2. DOCX a PDF\n\n0. Volver\n\n')
         s('cls')
         if option == '1':
             converter_document('pdf', parse)
