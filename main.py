@@ -1,26 +1,23 @@
-from os import system as s
+from os import system
 
-from converters.audios import audios_options
-from converters.documents import documents_options
-from converters.images import images_options
-from converters.recorder import recorder_options
-from converters.translator import translator_options
-from converters.videos import videos_options
+from converter import audios, documents, images, reader, recorder, translator, videos
 
-s('cls')
+system('cls')
 option = ''
 while option != '0':
-    option = input('CONVERTER-BOT\n\n 1. Convertir Audio\n 2. Convertir Documento\n 3. Convertir Imagen\n 4. Convertir Video\n 5. Convertir Grabación\n 6. Traducir\n\n0. Salir del programa\n\n')
-    s('cls')
+    option = input('CONVERTER-BOT\n\n 1. Convertir Audio\n 2. Convertir Documento\n 3. Convertir Imagen\n 4. Convertir Video\n 5. Grabar\n 6. Leer\n 7. Traducir\n\n0. Salir del programa\n\n')
+    system('cls')
     if option == '1':
-        audios_options()
+        audios.options()
     elif option == '2':
-        documents_options()
+        documents.options()
     elif option == '3':
-        images_options()
+        images.options()
     elif option == '4':
-        videos_options()
+        videos.options()
     elif option == '5':
-        recorder_options()
+        recorder.options()
     elif option == '6':
-        translator_options()
+        reader.options()
+    elif option == '7':
+        translator.options()
