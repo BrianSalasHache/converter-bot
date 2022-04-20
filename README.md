@@ -33,3 +33,18 @@ You need to install [Tesseract-OCR](https://github.com/tesseract-ocr/tessdoc#bin
 ## FFmpeg
 You need to install [ffmpeg-git-full.7z](https://ffmpeg.org/download.html)
 - https://ffmpeg.org/download.html
+
+# Create executable
+If you want to create an executable you need to do this:
+
+1. Run this code:
+
+    pyinstaller -F --icon=./logo.ico main.py
+
+2. When the execution is complete, you need drag the 'main.exe' file into the dist folder and then drop it into the 'CONVERTER-BOT' folder
+
+3. You can change the name of the 'main.exe' file if you want
+
+4. You can delete the following folders: 'build', 'dist'
+
+5. You can delete the 'main.spec' file
