@@ -1,38 +1,68 @@
-from gtts import gTTS
 from os import system, remove
+
+from gtts import gTTS
 
 from config import languages, types
 from converter import images
 from helpers import file
 
-def reader(language: str, domain: str, delete: bool):
+
+def reader(
+        language: str,
+        domain: str,
+        delete: bool,
+        message: bool = False) -> None:
+    '''Lee un archivo de imagen o texto y lo guarda en MP3'''
     for file_found in file.seeker('txt'):
-        name, ext = file_found
-        print(f'Convirtiendo el archivo a {name}.{ext} a MP3...')
-        text = open(f'{file.folder}{name}.{ext}', 'r', encoding='utf-8').read()
+        route, name, ext = file_found
+        old_route = f'{route}.{ext}'
+        new_route = f'{route}-reader-{language}-{domain}.mp3'
+
+        if message:
+            print(name)
+
+        text = open(old_route, 'r', encoding='utf-8').read()
         speech = gTTS(text=text, lang=language, tld=domain, slow=False)
-        speech.save(f'{file.folder}{name}-reader-{language}-{domain}.mp3')
-        print('Conversión del archivo exitosa!!\n')
+        speech.save(new_route)
+
         if delete:
-            remove(f'{file.folder}{name}.{ext}')
-    print('================================\n')
+            remove(f'{route}.{ext}')
+
 
 def language(delete: bool = False) -> None:
+    '''Elige el idioma del lector.'''
     option = ' '
-    while option not in (languages.reader):
-        option = input('SELECCIONE EL LENGUAJE DEL LECTOR:\n\n1. English\t(United Kingdom)\n2. English\t(United States)\n3. Español\t(Mexico)\n4. Español\t(España)\n5. Français\t(France)\n6. Portugues\t(Brazil)\n7. Portugues\t(Portugal)\n\n0. Volver\n\n')
+    while option not in languages.reader:
+        option = input(
+            'SELECCIONE EL LENGUAJE DEL LECTOR:\n\n '
+            '1. English\t(United Kingdom)\n 2. English\t(United States)\n '
+            '3. Español\t(Mexico)\n 4. Español\t(España)\n '
+            '5. Français\t(France)\n 6. Portugues\t(Brazil)\n '
+            '7. Portugues\t(Portugal)\n\n0. Volver\n\n')
         system('cls')
     if option != '0':
         language, domain = languages.reader[option]
-        reader(language, domain, delete)
+        file.decorator(
+            reader,
+            language=language,
+            domain=domain,
+            delete=delete,
+            message=True,
+            msg='Leyendo')
+
 
 def options() -> None:
+    '''Elige la opción a leer.
+
+    Si el archivo es una imagen, lo convierte a TXT y luego a MP3.
+    '''
     option = ' '
-    while option not in (types.reader):
-        option = input('LEER\n\n 1. Imagen\n 2. Texto\n\n0. Volver\n\n')
+    while option not in types.reader:
+        option = input('LEER\n\n '
+                       '1. Imagen\n 2. Texto\n\n0. Volver\n\n')
         system('cls')
     if option != '0':
-        if option == '1' and images.language() == True:
+        if option == '1' and images.language(types.reader[option]):
             language(True)
-        elif option == '2': 
+        elif option == '2':
             language()
